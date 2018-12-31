@@ -151,8 +151,14 @@ var UIController = (function () {
         int = numSplit[0];
         dec = numSplit[1];
         
-        if(int.length > 3) {
+        if(int.length > 3 && int.length < 7) {
             int = int.substr(0, int.length -3) + ',' + int.substr(int.length - 3, 3);
+        } else if(int.length > 6 && int.length < 10) {
+            int = int.substr(0, int.length -6) + ',' + int.substr(int.length - 6, 3) + ',' + int.substr(int.length - 3, 3);
+        } else if(int.length > 9 && int.length < 13) {
+            int = int.substr(0, int.length -9) + ',' + int.substr(int.length - 9, 3) + ',' + int.substr(int.length - 6, 3) + ',' + int.substr(int.length - 3, 3);
+        } else if(int.length > 9) {
+            int = int.substr(0, int.length - 12) + ',' + int.substr(int.length - 12, 3) + ',' + int.substr(int.length - 9, 3) + ',' + int.substr(int.length - 6, 3) + ',' + int.substr(int.length - 3, 3);
         }
         
         return ((type === 'exp') ? '-' : '+') + int + '.' + dec;
